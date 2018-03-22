@@ -4,7 +4,15 @@
 require 'pry'
 
 class Hash
-  def keys_of(*args)
-    map {|key, value| args.include?(value) ? key : nil }.compact
+  def keys_of(*arguments)
+    array = []
+    self.values.each_with_index do |value, index|
+      arguments.each do |args|
+         if value == args
+           array << self.keys[index]
+         end
+      end
+    end
+    return array
   end
 end
